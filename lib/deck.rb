@@ -14,12 +14,9 @@ class Deck
     @cards.find_all { |card| card.rank >= 11 }
   end
   
-  # def percent_high_ranking
-  #   # not exactly sure on this one, will bring it up in slack
-      # but i think we can probably use the high_ranking_cards.count array method from above
-       # and then divide by the .count method on the entire .cards array 
-       # and then multiply that by 100 to get the percentage
-  # end
+  def percent_high_ranking
+    (high_ranking_cards.count / @cards.count) * 100
+  end
   
   def remove_card
     @cards.shift
@@ -29,5 +26,4 @@ class Deck
     @cards.push(card)
   end
   
-
 end
