@@ -10,6 +10,7 @@ RSpec.describe Card do
     card = Card.new(:diamond, 'Queen', 12)
     # pry(main)> card = Card.new(:diamond, 'Queen', 12)
     # => #<Card:0x00000001005dae48 @rank=12, @suit=:diamond, @value="Queen">
+   
     expect(card).to be_an_instance_of(Card)
 
   end

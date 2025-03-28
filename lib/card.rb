@@ -8,14 +8,4 @@ class Card
     @rank = rank
   end
 
-
-
-
-
-
-
-
-
-
-
 end
