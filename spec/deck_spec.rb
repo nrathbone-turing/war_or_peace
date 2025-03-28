@@ -79,9 +79,21 @@ RSpec.describe Deck do
 
   end
 
-end
+  # note to self for the rest of the tests and in general
+  # how to think about the tests where each block is testing
+   # for something else, i.e.,
 
-pry(main)> deck.rank_of_card_at(0)
+  # it "removes the top card from the deck" do
+  #   # test #remove_card
+  # end
+
+  # it "adds a card to the bottom of the deck" do
+  #   # test #add_card
+  # end
+
+
+
+  pry(main)> deck.rank_of_card_at(0)
 #=> 12
 
 pry(main)> deck.rank_of_card_at(2)
@@ -121,3 +133,5 @@ pry(main)> deck.high_ranking_cards
 
 pry(main)> deck.percent_high_ranking
 #=> 33.33
+
+end
