@@ -11,22 +11,22 @@ require './lib/deck'
 #=> true
 
 RSpec.describe Deck do
-it "exists" do
-  deck = Deck.new[cards]
-  
-  expect(deck).to be_an_instance_of(Deck)
-end
+  it "exists" do
+    deck = Deck.new[cards]
+    
+    expect(deck).to be_an_instance_of(Deck)
+  end
 
-it "has readable attributes" do
-  deck = Deck.new[cards]
+  it "has readable attributes" do
+    deck = Deck.new[cards]
 
-  expect(deck.card1).to eq(:diamond, 'Queen', 12)
-  # pry(main)> card1 = Card.new(:diamond, 'Queen', 12)
-  # => 
+    expect(deck.card1).to eq(:diamond, 'Queen', 12)
+    # pry(main)> card1 = Card.new(:diamond, 'Queen', 12)
+    # => 
 
 
 
-end
+  end
 
 end
 
