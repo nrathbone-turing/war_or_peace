@@ -14,11 +14,7 @@ class Game
     @game_over = false
   end
 
-  def input
-    @input == gets.chomp
-  end
-
-   # upon startup, print to console:
+  # upon startup, print to console:
   def start
    
     puts "------------------------------------------------------------------"
@@ -30,24 +26,24 @@ class Game
     puts "Type 'GO' to start the game!"
     puts "------------------------------------------------------------------"
 
-    input.upcase
+    @input = gets.chomp.upcase
 
-    if input == "GO" && @has_started == false
+    if @input == "GO" && @has_started == false
       # prompt user to input how many cards they want to begin with in each player's deck
-      puts "Deck size = #{@deck_size}"
+      #puts "Deck size = #{@deck_size}"
       # prompt user to input how many players will be playing
-      puts "Player count = #{@player_count}"
+      #puts "Player count = #{@player_count}"
       # create instances of cards, decks, players
       # start gameplay loop
       @has_started == true
       
-    elsif input != "GO" && @has_started == false
+    elsif @input != "GO" && @has_started == false
       puts "Wait! You haven't started playing yet!"
       puts "Type 'GO' to start the game or 'HELP' for more options."
       input.upcase 
-    else input != "GO" || @has_started == true
+    else @input != "GO" || @has_started == true
       puts "Invalid input. Type 'HELP' for more options."
-      input.upcase
+      @input.upcase
     end
   end
 
