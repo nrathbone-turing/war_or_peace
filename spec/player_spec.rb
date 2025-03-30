@@ -30,9 +30,10 @@ RSpec.describe Player do
   it "exists" do
     expect(@player).to be_an_instance_of(Player)
     @player = Player.new("Clarisa", @deck)
-    #=> #<Player:0x0000000104404bb0, @deck= #<Deck:0x0000000104345a80, @cards= [#<Card:0x00000001040f53c0 @rank=12, @suit=:diamond, @value="Queen">,
-      #<Card:0x000000010409fc90 @rank=3, @suit=:spade, @value="3">,
-      #<Card:0x00000001042a0828 @rank=14, @suit=:heart, @value="Ace">]>, @name= "Clarisa">
+    #=> #<Player:0x0000000104404bb0, @deck= #<Deck:0x0000000104345a80, 
+        #@cards= [#<Card:0x00000001040f53c0 @rank=12, @suit=:diamond, @value="Queen">,
+        #<Card:0x000000010409fc90 @rank=3, @suit=:spade, @value="3">,
+        #<Card:0x00000001042a0828 @rank=14, @suit=:heart, @value="Ace">]>, @name= "Clarisa">
   end
 
   # test to see if the player has a name
