@@ -77,6 +77,7 @@ RSpec.describe Deck do
     expect(@deck.rank_of_card_at(2)).to eq(14)
     # pry(main)> deck.rank_of_card_at(2)
     #=> 14
+  
   end
   
   # test if only high ranking cards are returned (11 or above / face cards)
@@ -96,55 +97,60 @@ RSpec.describe Deck do
 
   # test if this method calculates the percent of high ranking cards
   it "calculates percent high ranking cards" do
-    #require 'pry'; binding.pry
-    expect(deck.percent_high_ranking).to eq(66.67)
+    expect(@deck.percent_high_ranking).to eq(66.67)
     # pry(main)> deck.percent_high_ranking
     # #=> 66.67
+  
   end
   
-  # test the remove_card to remove the first card,
+  # test the remove_card method to remove the first card from the array
   it "removes the top card from the deck" do
-  
-  # pry(main)> deck.remove_card
-  # #=> #<Card:0x007fbfd18490e8 @rank=12, @suit=:diamond, @value="Queen">
+  require 'pry'; binding.pry
+    expect(@deck.remove_card).to eq[@card1]
+    #pry(main)> @deck.remove_card
+    #=> #<Card:0x007fbfd18490e8 @rank=12, @suit=:diamond, @value="Queen">
 
-  # pry(main)> deck.cards
-  # #=> [#<Card:0x007fbfd19f4fa0...>, #<Card:0x007fbfd18555a0...>]
+    expect(@deck.cards).to eq[@card2, @card3]
+    #pry(main)> @deck.cards
+    #=> [#<Card:0x0000000102afaf48 @rank=3, @suit=:spade, @value="3">,
+        #<Card:0x0000000102afa6d8 @rank=14, @suit=:heart, @value="Ace">]
 
-  # pry(main)> deck.high_ranking_cards
-  # #=> [#<Card:0x007fbfd18555a0...>]
+    expect(@deck.high_ranking_cards).to eq[@card3]
+    #pry(main)> @deck.high_ranking_cards
+    #=> [#<Card:0x0000000102afa6d8 @rank=14, @suit=:heart, @value="Ace">]
 
-  # pry(main)> deck.percent_high_ranking
-  # #=> 50.0
+    expect(@deck.percent_high_ranking).to eq[50.0]
+    #pry(main)> @deck.percent_high_ranking
+    #=> 50.0
 
   end
 
+  #test the add_card method to make sure it's adding the card to the array
   it "adds a card to the bottom of the deck" do
-    # test #add_card
+    expect(@card4) = #<Card:0x0000000105d9e350 @rank=5, @suit=:club, @value="5">
+    #pry(main)> @card4 = Card.new(:club, '5', 5)
+    #=> #<Card:0x0000000105d9e350 @rank=5, @suit=:club, @value="5">
+
+    expect(@deck.add_card(@card4)).to eq[@card2, @card3, @card4]
+    #pry(main)> @deck.add_card(@card4)
+    #=> [#<Card:0x0000000102afaf48 @rank=3, @suit=:spade, @value="3">,
+        #<Card:0x0000000102afa6d8 @rank=14, @suit=:heart, @value="Ace">,
+        #<Card:0x0000000105d9e350 @rank=5, @suit=:club, @value="5">]
+    
+    expect(@deck.cards).to eq[@card2, @card3, @card4]
+    #pry(main)> @deck.cards
+    #=> [#<Card:0x0000000102afaf48 @rank=3, @suit=:spade, @value="3">,
+        #<Card:0x0000000102afa6d8 @rank=14, @suit=:heart, @value="Ace">,
+        #<Card:0x0000000105d9e350 @rank=5, @suit=:club, @value="5">]
+
+    expect(@deck.high_ranking_cards).to eq[@card3]
+    #pry(main)> @deck.high_ranking_cards
+    #=> [#<Card:0x0000000102afa6d8 @rank=14, @suit=:heart, @value="Ace">]
+
+    expect(@deck.percent_high_ranking).to eq[33.33]
+    #pry(main)> @deck.percent_high_ranking
+    #=> 33.33
+
   end
-
-
-
-
-
-
-
-
-
-
-
-# pry(main)> card4 = Card.new(:club, '5', 5)
-# #=> #<Card:0x007fbfd2963978 @rank=5, @suit=:club, @value="5">
-
-# pry(main)> deck.add_card(card4)
-
-# pry(main)> deck.cards
-# #=> [#<Card:0x007fbfd19f4fa0...>, #<Card:0x007fbfd18555a0...>, #<Card:0x007fbfd2963978...>]
-
-# pry(main)> deck.high_ranking_cards
-# #=> [#<Card:0x007fbfd18555a0...>]
-
-# pry(main)> deck.percent_high_ranking
-# #=> 33.33
 
 end
