@@ -82,12 +82,39 @@ RSpec.describe Turn do
       #pry(main)> @turn.spoils_of_war
       # => []
     end
-  
-  
-  
-  
-  
-  
+
+    # test to make sure Megan is the winner
+    it "winner is Megan" do
+    expect()
+    pry(main)> winner = turn.winner
+    #=> #<Player:0x007fa3edae29d0 @deck=#<Deck:0x007fa3eda472c8...>, @name="Megan">
+    end
+
+    # test to make sure that the pile_cards array contains the top card from each player's deck
+    it "each player sends top card of deck to pile_cards" do
+    expect()
+    pry(main)> turn.pile_cards
+    end
+    
+    # test to ake sure that the spoils_of_war array contains all of the cards from pile_cards
+    it "spoils_of_war arary contains all of the cards from pile_cards" do
+    expect()
+    pry(main)> turn.spoils_of_war
+    #=> [#<Card:0x007fa3edaa0df0 @rank=11, @suit=:heart, @value="Jack">, #<Card:0x007fa3ed98d9b8 @rank=9, @suit=:heart, @value="9">]
+    end
+    
+    # test that the award_spoils method correctly adds the cards in that array to the winner's deck
+    it "add cards from spoils to winner's deck" do
+    pry(main)> turn.award_spoils(winner)
+    end
+    
+    # test both players' decks have updated accordingly after calling the award_spoils method
+    it "update both players decks after spoils awarded" do
+    pry(main)> player1.deck
+    #=> #<Deck:0x007fa3eda472c8 @cards=[#<Card:0x007fa3eda519a8...>, #<Card:0x007fa3edb263d8...>, #<Card:0x007fa3eda89308...>, #<Card:0x007fa3edaa0df0...>, #<Card:0x007fa3ed98d9b8...>]>
+    pry(main)> player2.deck
+    #=> #<Deck:0x007fa3ee11ee48 @cards=[#<Card:0x007fa3ee14ef80...>, #<Card:0x007fa3eda3e1f0...>, #<Card:0x007fa3edad1cc0...>]>
+    end
   
   end
 
