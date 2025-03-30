@@ -105,7 +105,7 @@ RSpec.describe Deck do
   
   # test the remove_card method to remove the first card from the array
   it "removes the top card from the deck" do
-  require 'pry'; binding.pry
+  #require 'pry'; binding.pry
     expect(@deck.remove_card).to eq[@card1]
     #pry(main)> @deck.remove_card
     #=> #<Card:0x007fbfd18490e8 @rank=12, @suit=:diamond, @value="Queen">
