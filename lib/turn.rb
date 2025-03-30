@@ -9,15 +9,17 @@ class Turn
   end
 
   def type
-    # A :basic turn is one in which the rank_of_card_at(0) from the players’ decks are not the same rank.
+    # A :basic turn is one in which the rank_of_card_at(0) from the players’ decks are not the same rank
     if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
       :basic
-    # A :war turn occurs when both players’ rank_of_card_at(0) are the same.
+    # A :war turn occurs when both players’ rank_of_card_at(0) are the same
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0)
-      :war
-    # :mutually_assured_destruction occurs when both players’ rank_of_card_at(0) AND rank_of_card_at(2) are the same.
-    elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) && @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+    # :mutually_assured_destruction occurs when both players’ rank_of_card_at(0) AND rank_of_card_at(2) are the same 
+      if @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
       :mutually_assured_destruction
+      else 
+      :war
+      end
     end
   end
 
@@ -57,7 +59,8 @@ class Turn
       3.times do 
         @spoils_of_war.push(@player2.deck.remove_card)
       end
-    # for a :mutually_assured_destruction turn, each player will remove three cards from play (the top three cards in their deck). These cards are not sent to the spoils pile, they are simply removed from each players’ deck
+    # for a :mutually_assured_destruction turn, each player will remove three cards from play (the top three cards in their deck).
+    # These cards are not sent to the spoils pile, they are simply removed from each players’ deck
     elsif type == :mutually_assured_destruction
       3.times do 
         @player1.deck.remove_card
@@ -74,8 +77,11 @@ class Turn
       @player1.deck.cards.concat(@spoils_of_war)
     elsif winner == @player2
       @player2.deck.cards.concat(@spoils_of_war)
+    elsif winner == "No Winner"
+
     end
   
+    #@spoils_of_war.clear
     # will ask in Slack - not sure if we should be adding a way to clear the @spoils_of_war array after it's awarded so the same cards don't keep getting added?
 
   end
