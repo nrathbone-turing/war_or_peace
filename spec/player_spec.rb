@@ -10,7 +10,7 @@ require './lib/deck'
 require './lib/player'
 #pry(main)> require './lib/player'
 #=> true
-require 'pry'; binding.pry
+#require 'pry'; binding.pry
 RSpec.describe Player do
 
   before(:each) do
