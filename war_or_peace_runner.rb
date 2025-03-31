@@ -3,7 +3,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 require './lib/game'
-require 'pry'; binding.pry
+#require 'pry'; binding.pry
 
 # Create 52 Cards (A standard deck)
 # Put those card into two Decks (some randomness would be nice here!)
@@ -11,4 +11,4 @@ require 'pry'; binding.pry
 # Start the game using a new method called start
 
 @game = Game.new
-game.start
+@game.start
