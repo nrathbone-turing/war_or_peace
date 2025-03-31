@@ -9,6 +9,10 @@ class Turn
   end
 
   def type
+    # add a safeguard against the undefined method 'deck' for nil:NilClass" error
+    # which happens if the @player is nil when the other class methods and attributes are being called
+    return :unknown if @player1.nil? || @player2.nil?
+    
     # A :basic turn is one in which the rank_of_card_at(0) from the players’ decks are not the same rank
     if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
       :basic
@@ -25,6 +29,10 @@ class Turn
 
   # this method will determine the winner of the turn.
   def winner
+    # add a safeguard against the undefined method 'deck' for nil:NilClass" error
+    # which happens if the @player is nil when the other class methods and attributes are being called
+    return "No Winner" if @player1.nil? || @player2.nil?
+
     # if the turn has a type of :basic, it will return whichever player has a higher rank_of_card_at(0)
     if type == :basic
       if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
@@ -41,6 +49,8 @@ class Turn
       end
     # if the turn has a type of :mutually_assured_destruction the method will return No Winner
     elsif type == :mutually_assured_destruction
+      return "No Winner"
+    else 
       return "No Winner"
     end
   end

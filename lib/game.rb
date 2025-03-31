@@ -2,11 +2,6 @@ class Game
 
   attr_reader :has_started, :game_over, :player1, :player2, :deck1, :deck2
 
-  # Create 52 Cards (A standard deck)
-  # Put those card into two Decks (some randomness would be nice here!)
-  # Create two players with the Decks you created
-  # Start the game using a new method called start
-
   def initialize()
     @has_started = false
     @game_over = false
@@ -93,7 +88,7 @@ class Game
   # where the first 26 cards (index position 0 through 25) were in deck1_cards and the second 26 cards (index position 26 through 51) were in deck2_cards
   # then when I call that method, it will declare new instance variables with each deck having half of the already-shuffled cards
   def split_deck(shuffled_deck)
-  [shuffled_deck[0...26], shuffled_deck[26...52]]
+    [shuffled_deck[0...26], shuffled_deck[26...52]]
   end
 
   # refactor note to see how to emulate "dealing" the cards in a manner similar to how they are dealt in real life, 
@@ -106,11 +101,14 @@ class Game
     [@player1, @player2]
   end
 
-  def play_game(@player1, @player2)
+  def play_game
+    # safeguard the loop from "undefined method for nil:NilClass" NoMethodErrors
+    # make sure that both players exist before executing the loop
+    return if @player1.nil? || @player2.nil?
+
     # set initial turn count to 1
     turn_count = 1
 
-    # logic for determining a max turn count/draw outcome
     # loop through turns until one player loses or 1,000,000 turns have happened
     until @player1.has_lost? || @player2.has_lost? || turn_count >= 1000000
         
@@ -122,17 +120,21 @@ class Game
 
       # print results for each turn, printing the turn number, turn type, turn winner name, and how many cards they won
       if turn.type == :basic
+        if winner != "No Winner"
         # for a :basic turn type, 2 cards were added to the pile_cards, so 2 cards are added to the spoils_of_war, then added to the winner's deck
-        puts "Turn #{turn_count}: #{winner.name} won 2 cards"
-        #=> "Turn 1: Megan won 2 cards"
+          puts "Turn #{turn_count}: #{winner.name} won 2 cards"
+          #=> "Turn 1: Megan won 2 cards"
+        end
       elsif turn.type == :war
+        if winner != "No Winner"
         # for a :war turn type, 6 cards were added to the pile_cards, so 2 cards are added to the spoils_of_war, then added to the winner's deck
-        puts "Turn #{turn_count}: WAR - #{winner.name} won 6 cards"
-        #=> "Turn 2: WAR - Aurora won 6 cards"
+          puts "Turn #{turn_count}: WAR - #{winner.name} won 6 cards"
+          #=> "Turn 2: WAR - Aurora won 6 cards"
+        end
       elsif turn.type == :mutually_assured_destruction
         # for a :mutually_assured_destruction turn type, 6 cards were remove from play and NOT added to the pile_cards, meaning no cards get added to spoils_of_war
-        puts "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
-        #=> Turn 3: *mutually assured destruction* 6 cards removed from play
+          puts "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
+          #=> Turn 3: *mutually assured destruction* 6 cards removed from play
       end
 
       turn_count += 1
@@ -178,7 +180,6 @@ end
   # maybe these methods for the "GO" logic above
   # def deck_size
   #   @deck_size = deck_size
-
   #   @input
   # end
 
@@ -196,9 +197,8 @@ end
   # or add logic to check for the state/outcome of the game to conditionally offer more inputs to play again or maybe store a leaderboard across games
 
     # elsif @has_started == true && @player.has_lost == true
-    # puts "Maybe next time! Want to play again?"
-    # puts "Type 'GO' to start the game!"
-
-    # def restart
-    #   @input == "RESTART"
-    # end
+      # puts "Maybe next time! Want to play again?"
+      # puts "Type 'GO' to start the game!"
+    # elsif @input == "RESTART"
+   
+end

@@ -75,62 +75,71 @@ RSpec.describe Game do
     
     it "runs play_game and prints the return value from each turn in the terminal" do
       @game.setup_game
+      @turn = Turn.new(@player1, @player2)
       @game.play_game
-
+      
       # set initial turn count to 1
+      turn_count = 1
       expect(turn_count).to eq(1)
+       #=> 1
 
       # create a new instance of the Turn class for each turn
-      expect(turn).to be_an_instance_of(Turn)
+      expect(@turn).to be_an_instance_of(Turn)
 
       # compare the top/first cards of each player's deck
       # test that the winner is returned correctly based on the cards compared and turn type
-      expect(turn.winner).to eq(turn.winner)
+      expect(@turn.winner).to eq(@turn.winner)
 
       # based on turn type, determine how many cards are added the spoils pile
       # then, if :basic or :war, add those cards to the turn winner's deck
             
       # print results for each turn, printing the turn number, turn type, turn winner name, and how many cards they won
         # refactor notes: not testing terminal output currently but I think I could do it in a similar way as before
-        # expect { play_game }.to output(/Turn #{turn_count}/).to_stdout
+        # expect { game.play_game }.to output(/Turn #{turn_count}/).to_stdout
     
       # for a :basic turn type, 2 cards were added to the pile_cards,
       # so 2 cards are added to the spoils_of_war, then added to the winner's deck
-      expect()
-      #=> "Turn 1: Megan won 2 cards"
+        # expect { game.play_game }.to output(/won 2 cards/).to_stdout
+        #=> "Turn 1: Megan won 2 cards"
     
       # for a :war turn type, 6 cards were added to the pile_cards, so 2 cards are added to the spoils_of_war, then added to the winner's deck
-      expect()
-      #=> "Turn 2: WAR - Aurora won 6 cards"
+        # expect { game.play_game }.to output(/won 6 cards/).to_stdout
+        #=> "Turn 2: WAR - Aurora won 6 cards"
 
       # for a :mutually_assured_destruction turn type, 6 cards were remove from play and NOT added to the pile_cards, meaning no cards get added to spoils_of_war
-      expect()
-      #=> Turn 3: *mutually assured destruction* 6 cards removed from play
+        # expect { game.play_game }.to output(/removed from play/).to_stdout
+        #=> "Turn 3: *mutually assured destruction* 6 cards removed from play"
 
       # test that the method increments the turn_count by 1 after each turn,
       # keeping track internally but not printing
       expect(turn_count.to_i + 1).to eq(2)
-        
-      #=> "Turn 9324: Aurora won 2 cards"
-
     end
 
     it "ends the game when a player wins" do
       # test if one player has an empty deck after the turn ends,
       # and if so, the game is over and a winner is printed to the terminal
-      
-      expect(@game.game_over).to be true
-      #=> true
+      @game.setup_game
+      @turn = Turn.new(@player1, @player2)
+      @game.play_game
+
       # test checking the has_lost? method on the Player class after each turn
-      expect(@game.player1.has_lost?).to eq(true).or eq(false)
+        expect(@game.player1.has_lost?).to eq(true).or eq(false)
+        expect(@game.player2.has_lost?).to eq(true).or eq(false)
       
+      #testing that after a winner has been declared, game_over = true
+        expect(@game.game_over).to be true
+        #=> true
       
-      #=> "Megan has no cards remaining in their deck."
-      #=> "*~*~*~* Aurora has won the game! *~*~*~*""
+      # test the output in terminal when a winner is declared
+        #expect { game.play_game }.to output(/no cards remaining/).to_stdout
+        #expect { game.play_game }.to output(/won the game!/).to_stdout
+        #=> "Turn 9324: Aurora won 2 cards"
+        #=> "Megan has no cards remaining in their deck."
+        #=> "*~*~*~* Aurora has won the game! *~*~*~*""
 
     end
     
   end
-
+  
 
 end

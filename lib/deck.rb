@@ -7,6 +7,9 @@ class Deck
   end
 
   def rank_of_card_at(index)
+    # add a safeguard against an out-of-bounds index error "NoMethodError: undefined method `rank` for nil:NilClass"
+    # which happens if players have fewer than the number of cards required to determine turn type
+    return 0 if @cards[index].nil?
     @cards[index].rank
   end 
 
