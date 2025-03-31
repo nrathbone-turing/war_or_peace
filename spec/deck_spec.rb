@@ -15,25 +15,25 @@ RSpec.describe Deck do
   
   before(:each) do
     @card1 = Card.new(:diamond, 'Queen', 12)
-    # pry(main)> card1 = Card.new(:diamond, 'Queen', 12) 
+    # pry(main)> @card1 = Card.new(:diamond, 'Queen', 12) 
     # => #<Card:0x00000001073caea8 @rank=12, @suit=:diamond, @value="Queen">
 
     @card2 = Card.new(:spade, '3', 3)
-    # pry(main)> card2 = Card.new(:spade, '3', 3)
+    # pry(main)> @card2 = Card.new(:spade, '3', 3)
     # => #<Card:0x00000001077cf030 @rank=3, @suit=:spade, @value="3">
 
     @card3 = Card.new(:heart, 'Ace', 14)
-    # pry(main)> Card.new(:heart, 'Ace', 14)
+    # pry(main)> @card3 = Card.new(:heart, 'Ace', 14)
     # => #<Card:0x00000001071d06c0 @rank=14, @suit=:heart, @value="Ace">
         
     @cards = [@card1, @card2, @card3]
-    # pry(main)> cards = [card1, card2, card3]
+    # pry(main)> @cards = [card1, card2, card3]
     # =>[#<Card:0x00000001073caea8 @rank=12, @suit=:diamond, @value="Queen">,
         #<Card:0x00000001077cf030 @rank=3, @suit=:spade, @value="3">,
         #<Card:0x00000001071d06c0 @rank=14, @suit=:heart, @value="Ace">]
 
     @deck = Deck.new(@cards)
-    # pry(main)> deck = Deck.new(cards)
+    # pry(main)> @deck = Deck.new(cards)
     # => #<Deck:0x0000000108ff0010
           #@cards=
             #[#<Card:0x0000000107f65a38 @rank=12, @suit=:diamond, @value="Queen">,
@@ -128,6 +128,7 @@ RSpec.describe Deck do
   #test the add_card method to make sure it's adding the card to the array
   it "adds a card to the bottom of the deck" do
     @cards = [@card2, @card3]
+    @deck = Deck.new(@cards)
     @card4 = Card.new(:club, '5', 5)
     
     #expect(@card4).to eq(@card4)
@@ -150,7 +151,7 @@ RSpec.describe Deck do
     #pry(main)> @deck.high_ranking_cards
     #=> [#<Card:0x0000000102afa6d8 @rank=14, @suit=:heart, @value="Ace">]
 
-    expect(@deck.percent_high_ranking).to eq([33.33])
+    expect(@deck.percent_high_ranking).to eq(33.33)
     #pry(main)> @deck.percent_high_ranking
     #=> 33.33
 
