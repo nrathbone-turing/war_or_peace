@@ -1,6 +1,6 @@
 class Game
 
-  attr_reader :has_started, :game_over
+  attr_reader :has_started, :game_over, :player1, :player2, :deck1, :deck2
 
   # Create 52 Cards (A standard deck)
   # Put those card into two Decks (some randomness would be nice here!)
@@ -43,11 +43,11 @@ class Game
   end
 
   def setup_game
-    @has_started == true
-    @entire_deck = create_entire_deck
+    @has_started = true
+    create_entire_deck
     @shuffled_deck = shuffle_deck(@entire_deck)
     @deck1, @deck2 = split_deck(@shuffled_deck)
-    @player1, @player2 = create_players(deck1, deck2)
+    @player1, @player2 = create_players(@deck1, @deck2)
   end
 
 # hard-coded card and player variables - iteration 3
@@ -86,7 +86,7 @@ class Game
   end
 
   def shuffle_deck(entire_deck)
-    entire_deck.shuffle
+    @entire_deck.shuffle
   end
 
   # I was able to get the array method for range working here though to split them easily enough after shuffling
@@ -101,8 +101,9 @@ class Game
     
   # create new instances of the each player   
   def create_players(deck1, deck2)
-    @player1 = Player.new("Megan", Deck.new(deck1))
-    @player2 = Player.new("Aurora", Deck.new(deck2))
+    @player1 = Player.new("Megan", Deck.new(@deck1))
+    @player2 = Player.new("Aurora", Deck.new(@deck2))
+    [@player1, @player2]
   end
 
   # def play_game(@player1, @player2
