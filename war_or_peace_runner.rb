@@ -10,5 +10,5 @@ require 'pry'; binding.pry
 # Create two players with the Decks you created
 # Start the game using a new method called start
 
-game = Game.new
+@game = Game.new
 game.start

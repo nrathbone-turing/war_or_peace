@@ -1,6 +1,6 @@
 class Game
 
-  #attr_reader :deck_size, :create_decks
+  attr_reader :has_started, :game_over
 
   # Create 52 Cards (A standard deck)
   # Put those card into two Decks (some randomness would be nice here!)
@@ -36,7 +36,7 @@ class Game
     elsif @input != "GO" && @has_started == false
       puts "Wait! You haven't started playing yet!"
       puts "Type 'GO' to start the game or 'HELP' for more options."
-      input.upcase 
+      input.upcase
     else @input != "GO" || @has_started == true
       puts "Invalid input. Type 'HELP' for more options."
       @input.upcase
@@ -108,7 +108,7 @@ class Game
       
     end
 
-  def play_game(@player1, @player2)
+  def play_game(@player1, @player2
     # loop through turns, keeping track internally but not printing
     # print turn results, outputting turn number
     # determine winner
