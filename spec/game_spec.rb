@@ -6,14 +6,14 @@ require './lib/turn'
 require './lib/game'
 
 #require 'pry'; binding.pry
-Rspec.describe Game do
+RSpec.describe Game do
 
   before(:each) do
     @game = Game.new
   end
 
   #test to see if the game exists
-  it exists do
+  it "exists" do
     expect(@game).to be_an_instance_of(Game)
     
     # and sets the instance variables to false
@@ -62,10 +62,10 @@ Rspec.describe Game do
 
       # test that both players' decks are correctly created as instances of the Deck class
       # and each deck's number of cards is 26, split evenly between the total 52 cards
-      expect(@game.player1.deck1).to be_an_instance_of(Deck)
-      expect(@game.player1.deck1.cards.length).to eq(26)
-      expect(@game.player2.deck2).to be_an_instance_of(Deck)
-      expect(@game.player2.deck2.cards.length).to eq(26)
+      expect(@game.player1.deck).to be_an_instance_of(Deck)
+      expect(@game.player1.deck.cards.length).to eq(26)
+      expect(@game.player2.deck).to be_an_instance_of(Deck)
+      expect(@game.player2.deck.cards.length).to eq(26)
     end
     
 
@@ -73,10 +73,7 @@ Rspec.describe Game do
 
   # describe "play_game starts the gameplay as expected" do
 
-  
-    
-
-
+ 
   # end
 
 

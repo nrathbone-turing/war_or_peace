@@ -77,56 +77,53 @@ class Game
       # for each value/rank pair (like '2' and 2), make a card for every suit
       all_suits.each do |suit|
         card = Card.new(suit, value, rank)
-        card_number = entire_deck.length + 1
+        card_number = @entire_deck.length + 1
         #just to check the return value for each card, making sure that all the cards are being created correctly based on their attributes
         puts "@card#{card_number} = [#{card.suit}, #{card.value}, #{card.rank}]"
-        entire_deck.push(card)
+        @entire_deck.push(card)
       end
     end
-
-    def shuffle_deck(@entire_deck)
-      @entire_deck.shuffle
-    end
-
-    # I was able to get the array method for range working here though to split them easily enough after shuffling
-    # where the first 26 cards (index position 0 through 25) were in deck1_cards and the second 26 cards (index position 26 through 51) were in deck2_cards
-    # then when I call that method, it will declare new instance variables with each deck having half of the already-shuffled cards
-    def split_deck(@shuffled_deck)
-    [@shuffled_deck[0...26], @shuffled_deck[26...52]]
-    end
-
-      # refactor note to see how to emulate "dealing" the cards in a manner similar to how they are dealt in real life, 
-    # by alternating players instead of just cutting the deck in half after shuffling like I did above
-    
-    # create new instances of the each player   
-    def create_players(@deck1, @deck2)
-      @player1 = Player.new("Megan", Deck.new(@deck1))
-      @player2 = Player.new("Aurora", Deck.new(@deck2))
-    end
-
-    
-      
-    end
-
-  def play_game(@player1, @player2
-    # loop through turns, keeping track internally but not printing
-    # print turn results, outputting turn number
-    # determine winner
-
-    # logic for determining a max turn count/draw outcome
-    # not sure if yet if i need to make these as separate methods
-    def turn_count
-      @turn_count 
-      
-    end
-    
-    def is_draw?
-      @turn_count  >= 1000000 && 
-      @game_over = true
-      
-      puts "---- DRAW ----"
-    end
   end
+
+  def shuffle_deck(entire_deck)
+    entire_deck.shuffle
+  end
+
+  # I was able to get the array method for range working here though to split them easily enough after shuffling
+  # where the first 26 cards (index position 0 through 25) were in deck1_cards and the second 26 cards (index position 26 through 51) were in deck2_cards
+  # then when I call that method, it will declare new instance variables with each deck having half of the already-shuffled cards
+  def split_deck(shuffled_deck)
+  [shuffled_deck[0...26], shuffled_deck[26...52]]
+  end
+
+  # refactor note to see how to emulate "dealing" the cards in a manner similar to how they are dealt in real life, 
+  # by alternating players instead of just cutting the deck in half after shuffling like I did above
+    
+  # create new instances of the each player   
+  def create_players(deck1, deck2)
+    @player1 = Player.new("Megan", Deck.new(deck1))
+    @player2 = Player.new("Aurora", Deck.new(deck2))
+  end
+
+  # def play_game(@player1, @player2
+  #   # loop through turns, keeping track internally but not printing
+  #   # print turn results, outputting turn number
+  #   # determine winner
+
+  #   # logic for determining a max turn count/draw outcome
+  #   # not sure if yet if i need to make these as separate methods
+  #   def turn_count
+  #     @turn_count 
+      
+  #   end
+    
+  #   def is_draw?
+  #     @turn_count  >= 1000000 && 
+  #     @game_over = true
+      
+  #     puts "---- DRAW ----"
+  #   end
+  # end
 
 end
 
