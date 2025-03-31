@@ -29,7 +29,6 @@ class Game
     if @input == "GO" && @has_started == false
       # create instances of cards, decks, players
       # start gameplay loop
-      @has_started == true
       setup_game
       play_game
       
@@ -44,6 +43,7 @@ class Game
   end
 
   def setup_game
+    @has_started == true
     @entire_deck = create_entire_deck
     @shuffled_deck = shuffle_deck(@entire_deck)
     @deck1, @deck2 = split_deck(@shuffled_deck)

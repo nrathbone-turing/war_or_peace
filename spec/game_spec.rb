@@ -5,7 +5,7 @@ require './lib/player'
 require './lib/turn'
 require './lib/game'
 
-require 'pry'; binding.pry
+#require 'pry'; binding.pry
 Rspec.describe Game do
 
   before(:each) do
@@ -50,15 +50,31 @@ Rspec.describe Game do
 
   # end
 
-  # describe "create_players and deck setup logic" do
+  describe "create_players and deck setup logic" do
 
+    it "runs setup_game and creates players and sets has_started to true" do
+      @game.setup_game
+    
+      expect(@game.has_started).to be true
+      # test that both players are created correctly as instances of the Player class
+      expect(@game.player1).to be_an_instance_of(Player)
+      expect(@game.player2).to be_an_instance_of(Player)
 
+      # test that both players' decks are correctly created as instances of the Deck class
+      # and each deck's number of cards is 26, split evenly between the total 52 cards
+      expect(@game.player1.deck1).to be_an_instance_of(Deck)
+      expect(@game.player1.deck1.cards.length).to eq(26)
+      expect(@game.player2.deck2).to be_an_instance_of(Deck)
+      expect(@game.player2.deck2.cards.length).to eq(26)
+    end
+    
 
-  # end
+  end
 
   # describe "play_game starts the gameplay as expected" do
 
-
+  
+    
 
 
   # end
