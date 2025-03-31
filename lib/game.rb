@@ -106,30 +106,57 @@ class Game
     [@player1, @player2]
   end
 
-  # def play_game(@player1, @player2
-  #   # loop through turns, keeping track internally but not printing
-  #   # print turn results, outputting turn number
-  #   # determine winner
+  def play_game(@player1, @player2)
+    # set initial turn count to 1
+    turn_count = 1
 
-  #   # logic for determining a max turn count/draw outcome
-  #   # not sure if yet if i need to make these as separate methods
-  #   def turn_count
-  #     @turn_count 
+    # logic for determining a max turn count/draw outcome
+    # loop through turns until one player loses or 1,000,000 turns have happened
+    until @player1.has_lost? || @player2.has_lost? || turn_count >= 1000000
+        
+      turn = Turn.new(@player1, @player2)
+      winner = turn.winner
       
-  #   end
+      turn.pile_cards
+      turn.award_spoils(winner)
+
+      # print results for each turn, printing the turn number, turn type, turn winner name, and how many cards they won
+      if turn.type == :basic
+        # for a :basic turn type, 2 cards were added to the pile_cards, so 2 cards are added to the spoils_of_war, then added to the winner's deck
+        puts "Turn #{turn_count}: #{winner.name} won 2 cards"
+        #=> "Turn 1: Megan won 2 cards"
+      elsif turn.type == :war
+        # for a :war turn type, 6 cards were added to the pile_cards, so 2 cards are added to the spoils_of_war, then added to the winner's deck
+        puts "Turn #{turn_count}: WAR - #{winner.name} won 6 cards"
+        #=> "Turn 2: WAR - Aurora won 6 cards"
+      elsif turn.type == :mutually_assured_destruction
+        # for a :mutually_assured_destruction turn type, 6 cards were remove from play and NOT added to the pile_cards, meaning no cards get added to spoils_of_war
+        puts "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
+        #=> Turn 3: *mutually assured destruction* 6 cards removed from play
+      end
+
+      turn_count += 1
+    end
     
-  #   def is_draw?
-  #     @turn_count  >= 1000000 && 
-  #     @game_over = true
-      
-  #     puts "---- DRAW ----"
-  #   end
-  # end
+    # determine winner by calling the winner method from the Turn class
+    # and checking the has_lost? method on the Player class after each turn
+    # if one player has an empty deck after the turn ends, the game is over and a winner is declared
+    if @player1.has_lost?
+      @game_over = true
+      puts "#{@player1.name} has no cards remaining in their deck."
+      puts "*~*~*~* #{@player2.name} has won the game! *~*~*~*"
+    elsif @player2.has_lost?
+      @game_over = true
+      puts "#{@player2.name} has no cards remaining in their deck."
+      puts "*~*~*~* #{@player1.name} has won the game! *~*~*~*"
+    elsif
+      # if there have been at least 1,000,000 turns when this check happens,
+      # the game ends in a draw
+      turn_count  >= 1000000 && @game_over = true
+      puts "---- DRAW ----"
+  end
 
 end
-
-
-
 
 
 
